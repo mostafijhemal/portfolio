@@ -149,8 +149,8 @@ This writes:
 ### GitHub Pages (included workflow)
 
 1. Push to a GitHub repository with the default branch named `main`.
-2. **Settings → Pages → Build and deployment → Source: GitHub Actions** (the workflow also
-   enables Pages on its first run).
+2. **Settings → Pages → Build and deployment → Source: GitHub Actions**. This one-time step
+   cannot be automated by the workflow — the Actions token is not allowed to create the Pages site.
 3. The workflow in `.github/workflows/deploy.yml` builds and publishes `dist/` on every push.
 4. The site is available at `https://mostafijhemal.github.io/portfolio/`.
    `vite.config.js` uses `base: './'`, so project-site subpaths work without changes.
