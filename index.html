@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Mostafijur Rahman — Software Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio of Mostafijur Rahman, a software engineer in Dhaka building practical web and backend applications with Python, FastAPI and Laravel. B.Sc. and M.Sc. in CSE."
+    />
+    <meta name="author" content="Mostafijur Rahman" />
+    <meta name="theme-color" content="#070b10" id="theme-color" />
+
+    <link rel="canonical" href="https://mostafijhemal.github.io/portfolio/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mostafijur Rahman" />
+    <meta property="og:title" content="Mostafijur Rahman — Software Engineer" />
+    <meta
+      property="og:description"
+      content="I turn ideas into practical, user-friendly software. Python backend, web development, databases and software design — built and refined through real projects."
+    />
+    <meta property="og:url" content="https://mostafijhemal.github.io/portfolio/" />
+    <meta property="og:image" content="https://mostafijhemal.github.io/portfolio/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mostafijur Rahman — Software Engineer, Dhaka, Bangladesh" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mostafijur Rahman — Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Software engineer in Dhaka building practical web and backend applications. Python, FastAPI, Laravel and databases."
+    />
+    <meta name="twitter:image" content="https://mostafijhemal.github.io/portfolio/og-image.png" />
+    <meta name="twitter:image:alt" content="Mostafijur Rahman — Software Engineer" />
+
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="preconnect" href="https://api.github.com" crossorigin />
+    <link rel="dns-prefetch" href="https://avatars.githubusercontent.com" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mostafijur Rahman",
+        "jobTitle": "Software Engineer",
+        "description": "Software engineer building practical web and backend applications with Python, FastAPI and Laravel.",
+        "url": "https://mostafijhemal.github.io/portfolio/",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Dhaka",
+          "addressCountry": "BD"
+        },
+        "sameAs": [
+          "https://github.com/mostafijhemal",
+          "https://www.linkedin.com/in/mostafij-hemal",
+          "https://t.me/mostafijhemal",
+          "https://youtube.com/@MostafijHimel"
+        ],
+        "knowsAbout": [
+          "Python",
+          "Web development",
+          "FastAPI",
+          "Laravel",
+          "Databases",
+          "Software design"
+        ]
+      }
+    </script>
+
+    <!-- Set the theme before paint to avoid a flash of the wrong colour scheme. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+          var root = document.documentElement;
+          root.classList.toggle('dark', theme === 'dark');
+          root.classList.toggle('light', theme === 'light');
+          root.style.colorScheme = theme;
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <div style="font-family: system-ui, sans-serif; padding: 2rem; color: #e8eef6; background: #070b10">
+        <h1>Mostafijur Rahman — Software Engineer</h1>
+        <p>
+          This portfolio needs JavaScript for the interactive experience. You can still find me on
+          <a href="https://github.com/mostafijhemal" style="color: #36bcf7">GitHub</a>,
+          <a href="https://www.linkedin.com/in/mostafij-hemal" style="color: #36bcf7">LinkedIn</a> and
+          <a href="https://t.me/mostafijhemal" style="color: #36bcf7">Telegram</a>.
+        </p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
