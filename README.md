@@ -42,8 +42,8 @@ names the components already use. Keep the JSON keys unchanged; the CMS schema i
 
 | File | Controls |
 | --- | --- |
-| `src/content/site.json` | Canonical URL, browser title, search description |
-| `src/content/profile.json` | Name, role, company, tagline, bio, photo, résumé, typing phrases |
+| `src/content/site.json` | Canonical site URL used by blog share metadata |
+| `src/content/profile.json` | Name, role, location, tagline, photo, résumé, typing phrases |
 | `src/content/socials.json` | Social links and their icons |
 | `src/content/about.json` | Story, experience, education, location, quick facts |
 | `src/content/skills.json` | Categories, icons, tier (`core` / `working` / `exploring`) |
@@ -354,7 +354,7 @@ Run Lighthouse against `npm run preview` (not the dev server) for accurate numbe
 - [x] **Certificate scans** — optimized images in `public/certificates/`, linked from each credential
 - [x] **Profile photo** — `public/profile.jpg`, shown in the About header
 - [ ] **Role responsibilities** — add 2–3 bullet points for the Executive role when ready
-- [x] **Current company** — AristoPharma Ltd. (`profile.company` + About quick facts)
+- [x] **Current company** — AristoPharma Ltd. (`about.experience` + About quick facts)
 - [ ] **Featured videos** — `youtube.featured` (2–3 `{ title, href }` objects)
 - [ ] **Blood Bank repo URL** — `projects.items[4].links.source`
 - [ ] **Blood Bank tech stack** — `projects.items[4].tech` + `techNote`

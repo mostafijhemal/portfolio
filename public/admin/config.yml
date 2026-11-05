@@ -37,20 +37,13 @@ collections:
     label: Site settings
     files:
       - name: site
-        label: Site metadata
+        label: Site URL
         file: src/content/site.json
         fields:
           - name: url
             label: Site URL
             widget: string
-            hint: Canonical address, with a trailing slash.
-          - name: title
-            label: Browser title
-            widget: string
-          - name: description
-            label: Search description
-            widget: text
-            hint: Used for search results and link previews. Keep it under 160 characters.
+            hint: Canonical address, with a trailing slash. Used by blog share metadata; the static SEO tags live in index.html.
 
       - name: profile
         label: Profile and hero
@@ -68,23 +61,11 @@ collections:
           - name: initials
             label: Initials
             widget: string
-          - name: handle
-            label: GitHub handle
-            widget: string
           - name: role
             label: Role
             widget: string
-          - name: degree
-            label: Degree
-            widget: string
           - name: location
             label: Location
-            widget: string
-          - name: timezone
-            label: Timezone label
-            widget: string
-          - name: company
-            label: Company
             widget: string
           - name: availability
             label: Availability
@@ -106,9 +87,6 @@ collections:
           - name: tagline
             label: Tagline
             widget: string
-          - name: bio
-            label: Short bio
-            widget: text
           - name: valueStatement
             label: Hero value statement
             widget: text
@@ -121,13 +99,6 @@ collections:
             field:
               name: phrase
               label: Phrase
-              widget: string
-          - name: currentlyExploring
-            label: Currently exploring
-            widget: list
-            field:
-              name: topic
-              label: Topic
               widget: string
           - name: resume
             label: Résumé
