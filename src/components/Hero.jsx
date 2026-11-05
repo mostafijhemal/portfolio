@@ -1,4 +1,4 @@
-import { FiArrowDown, FiArrowUpRight, FiDownload, FiMapPin } from 'react-icons/fi';
+import { FiArrowDown, FiArrowUpRight, FiClock, FiDownload, FiMapPin } from 'react-icons/fi';
 import { profile, socials } from '../data/content';
 import { SocialIcon } from './SocialIcons';
 import TiltCard from './TiltCard';
@@ -32,7 +32,7 @@ export default function Hero() {
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
               </span>
               <span>Software Engineer</span>
-              <span className="text-line/30">/</span>
+              <FiClock className="h-3 w-3 shrink-0 text-line/40" aria-hidden="true" />
               <span className="inline-flex items-center gap-1">
                 <FiMapPin className="h-3 w-3" aria-hidden="true" />
                 Dhaka, Bangladesh
