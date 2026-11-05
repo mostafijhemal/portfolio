@@ -10,7 +10,7 @@ tags:
   - CVE
   - Cloud Security
   - Artificial Intelligence
-draft: true
+draft: false
 ---
 
 ![AI identifies critical cloud vulnerabilities](/portfolio/uploads/licensed-image.jpg "AI identifies critical cloud vulnerabilities. Source: EvgeniyShkolenko / Getty Images")
