@@ -1,8 +1,46 @@
+import { useEffect, useState } from 'react';
 import { FiArrowDown, FiArrowUpRight, FiClock, FiDownload, FiMapPin } from 'react-icons/fi';
 import { profile, socials } from '../data/content';
 import { SocialIcon } from './SocialIcons';
 import TiltCard from './TiltCard';
 import TypewriterLine from './TypewriterLine';
+
+const dhakaTime = new Intl.DateTimeFormat('en-GB', {
+  timeZone: 'Asia/Dhaka',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false,
+});
+
+function DhakaClock() {
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    const tick = () => setNow(new Date());
+    const timer = window.setInterval(tick, 30_000);
+    const onVisibility = () => {
+      if (!document.hidden) tick();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => {
+      window.clearInterval(timer);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, []);
+
+  return (
+    <time
+      dateTime={now.toISOString()}
+      title="Bangladesh Standard Time (UTC+6)"
+      className="inline-flex items-center gap-1 tabular-nums"
+    >
+      <FiClock className="h-3 w-3 shrink-0 text-line/40" aria-hidden="true" />
+      <span className="sr-only">Local time in Dhaka:</span>
+      <span>{dhakaTime.format(now)}</span>
+      <span className="text-line/40">UTC+6</span>
+    </time>
+  );
+}
 
 const codeLines = [
   { n: '01', content: <><span className="text-violet">const</span> <span className="text-ink">me</span> <span className="text-muted">=</span> <span className="text-muted">{'{'}</span></> },
@@ -32,7 +70,7 @@ export default function Hero() {
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
               </span>
               <span>Software Engineer</span>
-              <FiClock className="h-3 w-3 shrink-0 text-line/40" aria-hidden="true" />
+              <DhakaClock />
               <span className="inline-flex items-center gap-1">
                 <FiMapPin className="h-3 w-3" aria-hidden="true" />
                 Dhaka, Bangladesh
