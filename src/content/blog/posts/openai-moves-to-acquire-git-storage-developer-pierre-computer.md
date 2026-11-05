@@ -3,7 +3,8 @@ title: OpenAI Moves to Acquire Git Storage Developer Pierre Computer
 date: 2026-11-05
 excerpt: OpenAI is set to purchase Pierre Computer Company, integrating its Git-based storage layer directly into Codex to pave the way for autonomous AI code management.
 tags:
-  - OpenAI, Pierre Computer Company, Git-based storage, Codex, AI code management
+  - '#OpenAI'
+  - Pierre Computer Company, Git-based storage, Codex, AI code management
 draft: false
 ---
 
