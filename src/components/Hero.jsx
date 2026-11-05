@@ -35,9 +35,10 @@ function DhakaClock() {
       className="inline-flex items-center gap-1 tabular-nums"
     >
       <FiClock className="h-3 w-3 shrink-0 text-line/40" aria-hidden="true" />
-      <span className="sr-only">Local time in Dhaka:</span>
-      <span>{dhakaTime.format(now)}</span>
-      <span className="text-line/40">UTC+6</span>
+      <span className="sr-only">Local time in Dhaka: </span>
+      <span>
+        {dhakaTime.format(now)} <span className="text-line/40">UTC+6</span>
+      </span>
     </time>
   );
 }
