@@ -1,0 +1,776 @@
+# Sveltia CMS — https://sveltiacms.app/
+#
+# The repository is the database. Every save creates a commit on `main`, which
+# triggers the GitHub Pages workflow and rebuilds the public site.
+#
+# Authentication uses a GitHub personal access token so no OAuth worker is
+# required. To add one-click GitHub login later, deploy Sveltia CMS
+# Authenticator and add `base_url` plus `oauth` to `auth_methods` below.
+# See README.md → "Editing the site".
+
+backend:
+  name: github
+  repo: mostafijhemal/portfolio
+  branch: main
+  auth_methods:
+    - token
+
+site_url: https://mostafijhemal.github.io/portfolio/
+display_url: https://mostafijhemal.github.io/portfolio/
+logo_url: https://mostafijhemal.github.io/portfolio/icon-192.png
+
+media_folder: public/uploads
+public_folder: /portfolio/uploads
+
+commit_messages:
+  create: 'Create {{collection}} “{{slug}}”'
+  update: 'Update {{collection}} “{{slug}}”'
+  delete: 'Delete {{collection}} “{{slug}}”'
+  uploadMedia: 'Upload “{{path}}”'
+  deleteMedia: 'Delete “{{path}}”'
+
+collections:
+  # ---------------------------------------------------------------------------
+  # Site settings
+  # ---------------------------------------------------------------------------
+  - name: settings
+    label: Site settings
+    files:
+      - name: site
+        label: Site metadata
+        file: src/content/site.json
+        fields:
+          - name: url
+            label: Site URL
+            widget: string
+            hint: Canonical address, with a trailing slash.
+          - name: title
+            label: Browser title
+            widget: string
+          - name: description
+            label: Search description
+            widget: text
+            hint: Used for search results and link previews. Keep it under 160 characters.
+
+      - name: profile
+        label: Profile and hero
+        file: src/content/profile.json
+        fields:
+          - name: name
+            label: Full name
+            widget: string
+          - name: firstName
+            label: First name
+            widget: string
+          - name: lastName
+            label: Last name
+            widget: string
+          - name: initials
+            label: Initials
+            widget: string
+          - name: handle
+            label: GitHub handle
+            widget: string
+          - name: role
+            label: Role
+            widget: string
+          - name: degree
+            label: Degree
+            widget: string
+          - name: location
+            label: Location
+            widget: string
+          - name: timezone
+            label: Timezone label
+            widget: string
+          - name: company
+            label: Company
+            widget: string
+          - name: availability
+            label: Availability
+            widget: string
+          - name: photo
+            label: Profile photo
+            widget: object
+            fields:
+              - name: src
+                label: Image
+                widget: image
+              - name: alt
+                label: Alternative text
+                widget: string
+                hint: Describe the photo for screen readers.
+              - name: caption
+                label: Caption
+                widget: string
+          - name: tagline
+            label: Tagline
+            widget: string
+          - name: bio
+            label: Short bio
+            widget: text
+          - name: valueStatement
+            label: Hero value statement
+            widget: text
+          - name: levelNote
+            label: Level note
+            widget: string
+          - name: typingPhrases
+            label: Hero typing phrases
+            widget: list
+            field:
+              name: phrase
+              label: Phrase
+              widget: string
+          - name: currentlyExploring
+            label: Currently exploring
+            widget: list
+            field:
+              name: topic
+              label: Topic
+              widget: string
+          - name: resume
+            label: Résumé
+            widget: object
+            fields:
+              - name: href
+                label: File path
+                widget: string
+                hint: Use ./resume.pdf or upload a file and use /portfolio/uploads/…
+              - name: label
+                label: Link label
+                widget: string
+              - name: note
+                label: Download note
+                widget: string
+
+      - name: socials
+        label: Social links
+        file: src/content/socials.json
+        fields:
+          - name: items
+            label: Links
+            widget: list
+            summary: '{{fields.label}} — {{fields.handle}}'
+            fields:
+              - name: id
+                label: Icon
+                widget: select
+                options: [github, linkedin, telegram, youtube, email]
+              - name: label
+                label: Network
+                widget: string
+              - name: handle
+                label: Handle
+                widget: string
+              - name: href
+                label: URL
+                widget: string
+
+  # ---------------------------------------------------------------------------
+  # Page sections
+  # ---------------------------------------------------------------------------
+  - name: sections
+    label: Page sections
+    files:
+      - name: about
+        label: About
+        file: src/content/about.json
+        fields:
+          - name: eyebrow
+            label: Eyebrow
+            widget: string
+          - name: title
+            label: Heading
+            widget: string
+          - name: intro
+            label: Intro
+            widget: text
+          - name: paragraphs
+            label: Story paragraphs
+            widget: list
+            field:
+              name: paragraph
+              label: Paragraph
+              widget: text
+          - name: experience
+            label: Experience
+            widget: object
+            fields:
+              - name: label
+                label: Label
+                widget: string
+              - name: items
+                label: Roles
+                widget: list
+                summary: '{{fields.role}} — {{fields.company}}'
+                fields:
+                  - name: role
+                    label: Role
+                    widget: string
+                  - name: company
+                    label: Company
+                    widget: string
+                  - name: location
+                    label: Location
+                    widget: string
+                    required: false
+                  - name: startDate
+                    label: Start date
+                    widget: datetime
+                    type: date
+                    required: false
+                  - name: endDate
+                    label: End date
+                    widget: datetime
+                    type: date
+                    required: false
+                  - name: period
+                    label: Displayed period
+                    widget: string
+                    hint: Shown on the timeline, e.g. “Feb 2023 — Present”.
+                  - name: current
+                    label: Current role
+                    widget: boolean
+                    default: false
+          - name: storyLabel
+            label: Story label
+            widget: string
+          - name: education
+            label: Education
+            widget: object
+            fields:
+              - name: label
+                label: Label
+                widget: string
+              - name: items
+                label: Qualifications
+                widget: list
+                summary: '{{fields.value}} — {{fields.institution}}'
+                fields:
+                  - name: value
+                    label: Qualification
+                    widget: string
+                  - name: institution
+                    label: Institution
+                    widget: string
+                  - name: year
+                    label: Year
+                    widget: string
+          - name: location
+            label: Location card
+            widget: object
+            fields:
+              - name: label
+                label: Label
+                widget: string
+              - name: value
+                label: Location
+                widget: string
+              - name: note
+                label: Note
+                widget: string
+          - name: exploring
+            label: Currently exploring
+            widget: object
+            fields:
+              - name: label
+                label: Label
+                widget: string
+              - name: items
+                label: Topics
+                widget: list
+                field:
+                  name: topic
+                  label: Topic
+                  widget: string
+          - name: quickFacts
+            label: Quick facts
+            widget: list
+            summary: '{{fields.label}}: {{fields.value}}'
+            fields:
+              - name: label
+                label: Label
+                widget: string
+              - name: value
+                label: Value
+                widget: string
+          - name: quickFactsNote
+            label: Quick facts note
+            widget: text
+
+      - name: skills
+        label: Skills
+        file: src/content/skills.json
+        fields:
+          - name: eyebrow
+            label: Eyebrow
+            widget: string
+          - name: title
+            label: Heading
+            widget: string
+          - name: description
+            label: Description
+            widget: text
+          - name: coreSummary
+            label: Core summary
+            widget: list
+            field:
+              name: item
+              label: Item
+              widget: string
+          - name: exploringSummary
+            label: Exploring summary
+            widget: list
+            field:
+              name: item
+              label: Item
+              widget: string
+          - name: legend
+            label: Tier legend
+            widget: list
+            summary: '{{fields.label}} — {{fields.note}}'
+            fields:
+              - name: tier
+                label: Tier
+                widget: select
+                options: [core, working, exploring]
+              - name: label
+                label: Label
+                widget: string
+              - name: note
+                label: Note
+                widget: string
+          - name: categories
+            label: Categories
+            widget: list
+            summary: '{{fields.label}}'
+            fields:
+              - name: id
+                label: ID
+                widget: string
+                hint: Short lowercase identifier, e.g. languages.
+              - name: label
+                label: Label
+                widget: string
+              - name: items
+                label: Skills
+                widget: list
+                summary: '{{fields.name}} ({{fields.tier}})'
+                fields:
+                  - name: name
+                    label: Name
+                    widget: string
+                  - name: icon
+                    label: Icon key
+                    widget: string
+                    hint: TechIcons.jsx key, e.g. Python, React, PostgreSQL. Unknown keys fall back to a code icon.
+                  - name: tier
+                    label: Tier
+                    widget: select
+                    options: [core, working, exploring]
+                  - name: color
+                    label: Brand colour
+                    widget: string
+                    hint: Hex colour, e.g. #4B8BBE.
+
+      - name: credentials
+        label: Credentials
+        file: src/content/credentials.json
+        fields:
+          - name: eyebrow
+            label: Eyebrow
+            widget: string
+          - name: title
+            label: Heading
+            widget: string
+          - name: description
+            label: Description
+            widget: text
+          - name: groups
+            label: Groups
+            widget: list
+            summary: '{{fields.label}}'
+            fields:
+              - name: id
+                label: ID
+                widget: string
+                hint: Short lowercase identifier, e.g. certifications.
+              - name: label
+                label: Label
+                widget: string
+              - name: icon
+                label: Icon
+                widget: select
+                options: [award, book]
+              - name: items
+                label: Credentials
+                widget: list
+                summary: '{{fields.title}} — {{fields.issuer}}'
+                fields:
+                  - name: title
+                    label: Title
+                    widget: string
+                  - name: issuer
+                    label: Issuer
+                    widget: string
+                  - name: date
+                    label: Issue date
+                    widget: datetime
+                    type: date
+                    required: false
+                  - name: dateLabel
+                    label: Displayed date
+                    widget: string
+                    required: false
+                    hint: Free text shown on the card, e.g. “Issued 28 Dec 2025”.
+                  - name: validUntil
+                    label: Validity
+                    widget: string
+                    required: false
+                  - name: meta
+                    label: Meta note
+                    widget: string
+                    required: false
+                  - name: duration
+                    label: Duration
+                    widget: string
+                    required: false
+                    hint: e.g. 60 hr.
+                  - name: credential
+                    label: Credential ID
+                    widget: string
+                    required: false
+                  - name: verifyUrl
+                    label: Verification URL
+                    widget: string
+                    required: false
+                  - name: image
+                    label: Certificate image
+                    widget: image
+                    required: false
+                  - name: note
+                    label: Note
+                    widget: text
+                    required: false
+          - name: verifyLabel
+            label: Verify link label
+            widget: string
+
+      - name: projects
+        label: Projects
+        file: src/content/projects.json
+        fields:
+          - name: section
+            label: Section copy
+            widget: object
+            fields:
+              - name: eyebrow
+                label: Eyebrow
+                widget: string
+              - name: title
+                label: Heading
+                widget: string
+              - name: description
+                label: Description
+                widget: text
+              - name: allRepos
+                label: All repositories label
+                widget: string
+              - name: empty
+                label: Empty state
+                widget: string
+          - name: items
+            label: Projects
+            widget: list
+            summary: '{{fields.index}} — {{fields.title}}'
+            fields:
+              - name: id
+                label: ID
+                widget: string
+                hint: Stable lowercase identifier, e.g. sports-iptv-backend.
+              - name: index
+                label: Display number
+                widget: string
+                hint: e.g. 01.
+              - name: title
+                label: Title
+                widget: string
+              - name: category
+                label: Category label
+                widget: string
+              - name: categoryId
+                label: Category filter
+                widget: select
+                options: [backend, web, mobile, data]
+              - name: status
+                label: Status
+                widget: object
+                fields:
+                  - name: label
+                    label: Label
+                    widget: string
+                  - name: tone
+                    label: Tone
+                    widget: select
+                    options: [live, source, dev]
+              - name: accent
+                label: Accent
+                widget: select
+                options: [cyan, violet]
+              - name: problem
+                label: Problem
+                widget: text
+              - name: does
+                label: What it does
+                widget: text
+              - name: tech
+                label: Tech stack
+                widget: list
+                field:
+                  name: tech
+                  label: Technology
+                  widget: string
+              - name: techNote
+                label: Tech note
+                widget: string
+                required: false
+              - name: links
+                label: Links
+                widget: object
+                fields:
+                  - name: source
+                    label: Source URL
+                    widget: string
+                    required: false
+                  - name: demo
+                    label: Demo URL
+                    widget: string
+                    required: false
+              - name: image
+                label: Screenshot
+                widget: image
+                required: false
+                hint: Optional. ProjectCard.jsx must render it before it appears on the site.
+              - name: visualNote
+                label: Visual note
+                widget: string
+                hint: Placeholder shown until a screenshot is added.
+              - name: featured
+                label: Featured
+                widget: boolean
+                required: false
+                default: false
+
+      - name: github
+        label: GitHub section
+        file: src/content/github.json
+        fields:
+          - name: eyebrow
+            label: Eyebrow
+            widget: string
+          - name: title
+            label: Heading
+            widget: string
+          - name: description
+            label: Description
+            widget: text
+          - name: username
+            label: GitHub username
+            widget: string
+          - name: profileUrl
+            label: Profile URL
+            widget: string
+          - name: reposUrl
+            label: Repositories URL
+            widget: string
+          - name: fallback
+            label: Fallback message
+            widget: text
+            hint: Shown when the GitHub API is unavailable.
+
+      - name: youtube
+        label: YouTube section
+        file: src/content/youtube.json
+        fields:
+          - name: eyebrow
+            label: Eyebrow
+            widget: string
+          - name: title
+            label: Heading
+            widget: string
+          - name: description
+            label: Description
+            widget: text
+          - name: handle
+            label: Handle
+            widget: string
+          - name: url
+            label: Channel URL
+            widget: string
+          - name: cta
+            label: Button label
+            widget: string
+          - name: topics
+            label: Topics
+            widget: list
+            field:
+              name: topic
+              label: Topic
+              widget: string
+          - name: featured
+            label: Featured videos
+            widget: list
+            required: false
+            summary: '{{fields.title}}'
+            fields:
+              - name: title
+                label: Title
+                widget: string
+              - name: href
+                label: URL
+                widget: string
+          - name: slotLabel
+            label: Empty video slot label
+            widget: string
+
+      - name: contact
+        label: Contact
+        file: src/content/contact.json
+        fields:
+          - name: eyebrow
+            label: Eyebrow
+            widget: string
+          - name: title
+            label: Heading
+            widget: string
+          - name: description
+            label: Description
+            widget: text
+          - name: email
+            label: Email
+            widget: string
+          - name: formEndpoint
+            label: Formspree endpoint
+            widget: string
+            hint: Submissions are emailed to the address on the Formspree form.
+          - name: availability
+            label: Availability
+            widget: string
+          - name: freelance
+            label: Freelance note
+            widget: string
+          - name: formNote
+            label: Form note
+            widget: text
+          - name: successMessage
+            label: Success message
+            widget: text
+          - name: errorMessage
+            label: Error message
+            widget: text
+          - name: unconfiguredMessage
+            label: Unconfigured message
+            widget: text
+
+      - name: blog
+        label: Blog page text
+        file: src/content/blog.json
+        fields:
+          - name: eyebrow
+            label: Eyebrow
+            widget: string
+          - name: title
+            label: Heading
+            widget: string
+          - name: description
+            label: Description
+            widget: text
+          - name: backToBlog
+            label: Back to blog
+            widget: string
+          - name: backToPortfolio
+            label: Back to portfolio
+            widget: string
+          - name: emptyTitle
+            label: Empty title
+            widget: string
+          - name: emptyBody
+            label: Empty body
+            widget: text
+          - name: emptyCta
+            label: Empty call to action
+            widget: string
+          - name: emptyHref
+            label: Empty link
+            widget: string
+          - name: notFoundTitle
+            label: Not-found title
+            widget: string
+          - name: notFoundBody
+            label: Not-found body
+            widget: text
+          - name: notFoundCta
+            label: Not-found call to action
+            widget: string
+          - name: notFoundHref
+            label: Not-found link
+            widget: string
+
+      - name: footer
+        label: Footer
+        file: src/content/footer.json
+        fields:
+          - name: builtWith
+            label: Built with
+            widget: string
+          - name: note
+            label: Note
+            widget: string
+          - name: backToTop
+            label: Back-to-top label
+            widget: string
+
+  # ---------------------------------------------------------------------------
+  # Blog posts
+  # ---------------------------------------------------------------------------
+  - name: posts
+    label: Blog posts
+    label_singular: Post
+    folder: src/content/blog/posts
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    identifier_field: title
+    summary: '{{title}}'
+    sortable_fields: [date, title]
+    fields:
+      - name: title
+        label: Title
+        widget: string
+      - name: date
+        label: Publish date
+        widget: datetime
+        type: date
+      - name: excerpt
+        label: Excerpt
+        widget: text
+        hint: One or two sentences for the blog index and search results.
+      - name: tags
+        label: Tags
+        widget: list
+        required: false
+        field:
+          name: tag
+          label: Tag
+          widget: string
+      - name: draft
+        label: Draft
+        widget: boolean
+        default: true
+        hint: Drafts stay hidden from the public site.
+      - name: body
+        label: Body
+        widget: markdown

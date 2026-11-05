@@ -1,10 +1,12 @@
 # Mostafijur Rahman — Portfolio
 
 A fast, dark-first portfolio and Markdown blog for **Mostafijur Rahman**, Software Engineer (Dhaka, Bangladesh).
-Portfolio copy lives in `src/data/content.js`; blog notes are plain Markdown files.
+Portfolio copy lives in structured JSON under `src/content/`; blog notes are plain Markdown files.
+Both can be edited from the built-in CMS at `/admin/`.
 
 > **Stack:** React 18 + Vite 6 + Tailwind CSS 3 + CSS-only motion.
-> No UI kit, no animation runtime, no icon font, no analytics, no third-party scripts.
+> No UI kit, no animation runtime, no icon font, no analytics. The public site ships no
+> third-party scripts; only the `/admin/` page loads Sveltia CMS from a CDN.
 
 ---
 
@@ -28,35 +30,72 @@ npm run preview   # preview the production build
 
 ## Edit the content
 
-Everything is in **`src/data/content.js`**:
+There are two ways to edit the site:
 
-| Export | Controls |
+- **Admin panel (recommended):** `/admin/` — forms, media library and a Markdown editor.
+- **In the repository:** edit the JSON files in `src/content/` and the Markdown files in
+  `src/content/blog/posts/`.
+
+The React app reads those files through `src/data/content.js`, which re-exports them under the
+names the components already use. Keep the JSON keys unchanged; the CMS schema in
+`public/admin/config.yml` mirrors them.
+
+| File | Controls |
 | --- | --- |
-| `profile` | Name, role, company, tagline, bio, location, résumé link, typing phrases |
-| `navLinks` / `socials` | Navigation and social links |
-| `about` | Story, education, location, quick facts |
-| `skills` | Categories, icons, tier (`core` / `working` / `exploring`) |
-| `credentials` | Certifications and professional training groups |
-| `projects` / `projectFilters` | Case-study cards, categories, links, statuses |
-| `github` | Username and copy for the live API section |
-| `youtube` | Channel link, topics, featured video slots |
-| `contact` | Email, Formspree endpoint, messages |
-| `blog` | Blog heading, intro, empty state and 404 copy |
-| `footer` | Built-with line and back-to-top label |
+| `src/content/site.json` | Canonical URL, browser title, search description |
+| `src/content/profile.json` | Name, role, company, tagline, bio, photo, résumé, typing phrases |
+| `src/content/socials.json` | Social links and their icons |
+| `src/content/about.json` | Story, experience, education, location, quick facts |
+| `src/content/skills.json` | Categories, icons, tier (`core` / `working` / `exploring`) |
+| `src/content/credentials.json` | Certifications and professional training groups |
+| `src/content/projects.json` | `section` copy plus the `items` case-study cards |
+| `src/content/github.json` | Username and copy for the live API section |
+| `src/content/youtube.json` | Channel link, topics, featured video slots |
+| `src/content/contact.json` | Email, Formspree endpoint, messages |
+| `src/content/blog.json` | Blog heading, intro, empty state and 404 copy |
+| `src/content/footer.json` | Built-with line and back-to-top label |
+| `src/data/content.js` | Structural navigation (`navLinks`) and project filters |
+
+### Admin panel
+
+The CMS is [Sveltia CMS](https://sveltiacms.app/). It is a static page in `public/admin/`; it reads
+`config.yml` and talks directly to the GitHub API. No database or server is involved: saving creates
+a commit, and the normal Pages workflow publishes it.
+
+1. Open **https://mostafijhemal.github.io/portfolio/admin/**.
+2. Choose **Sign In Using Access Token**.
+3. Create a token on GitHub:
+   - **Fine-grained token** → Resource owner `mostafijhemal`, repository access only
+     `portfolio`, permission **Contents: Read and write**.
+   - Or a **classic token** with the `repo` scope.
+4. Paste the token and sign in. Edit a section or post, then save. Sveltia commits to `main`, and
+   the Pages workflow rebuilds the public site (usually about a minute).
+
+The token is stored in the browser's local storage, not in this repository. Use a private device,
+set an expiry date when you create it, and revoke it from GitHub if it is ever exposed.
+
+**Optional one-click login:** if you later want GitHub sign-in instead of pasting a token, deploy
+[Sveltia CMS Authenticator](https://github.com/sveltia/sveltia-cms-auth) to a free Cloudflare
+Worker, then add its URL as `backend.base_url` and `oauth` to `backend.auth_methods`. Token login
+can stay enabled as a fallback.
+
+Uploads from the CMS go to `public/uploads/` and are referenced as `/portfolio/uploads/...`.
+`src/lib/assetUrl.js` converts those paths for local development and for the GitHub Pages subpath.
 
 ### Add real screenshots
 
 Each project card renders a designed placeholder with `visualNote: '[ADD: screenshot]'`.
 To use a real image:
 
-1. Put the image in `public/projects/` (e.g. `public/projects/iptv.png`).
-2. Add `image: './projects/iptv.png'` to that project object.
-3. Update `ProjectCard.jsx` to render an `<img>` when `project.image` exists:
+1. Put the image in `public/projects/` (e.g. `public/projects/iptv.png`) or upload it in the CMS.
+2. Add `"image": "./projects/iptv.png"` to that project object in `src/content/projects.json`.
+3. Update `ProjectCard.jsx` to render an `<img>` when `project.image` exists. Import
+   `assetUrl` from `../lib/assetUrl` so CMS uploads work in both local preview and production:
 
 ```jsx
 {project.image ? (
   <img
-    src={project.image}
+    src={assetUrl(project.image)}
     alt={`${project.title} screenshot`}
     loading="lazy"
     decoding="async"
@@ -71,40 +110,44 @@ Keep screenshots around 1600×1000 and under ~250 KB (WebP/AVIF preferred).
 
 ### Add certificate scans
 
-Put the image in `public/certificates/` (for example `public/certificates/gemini-educator.png`)
-and add `image: './certificates/gemini-educator.png'` to that item in
-`credentials.groups[...].items`. The card then shows a “View certificate” link.
-Keep scans under ~400 KB; the current set is resized to 1800 px and saved as JPEG.
+Use the CMS image field on a credential, or put the image in `public/certificates/` (for example
+`public/certificates/gemini-educator.png`) and add `"image": "./certificates/gemini-educator.png"`
+to that item in `credentials.groups[...].items` inside `src/content/credentials.json`. The card
+then shows a “View certificate” link. Keep scans under ~400 KB; the current set is resized to
+1800 px and saved as JPEG.
 
 ### Change the profile photo
 
 The About portrait is `public/profile.jpg` (square, 460×460). Replace that file, or change
-`profile.photo` in `src/data/content.js` to point at a different image.
+`profile.photo.src` in `src/content/profile.json` — or use the image field in the CMS, which
+uploads a new file to `public/uploads/`.
 
 ### Contact form
 
 The form is connected to Formspree and sends submissions to `mostafij.hemal@gmail.com`.
 
-```js
-formEndpoint: 'https://formspree.io/f/xdeewjrq',
+```json
+"formEndpoint": "https://formspree.io/f/xdeewjrq",
 ```
 
-To use a different Formspree form, replace `contact.formEndpoint` in `src/data/content.js`.
+To use a different Formspree form, replace `formEndpoint` in `src/content/contact.json`.
 If the endpoint is removed, the form falls back to opening the visitor's email app via
 `contact.email`; if both are `null`, it shows a setup notice instead of pretending to send.
 
 ### Write a blog post
 
-The blog is file-based — no backend, database or admin panel. Each note is a Markdown file:
+The blog stays file-based — the CMS is a form over the same Markdown files. Each note is one file:
 
 ```
 src/content/blog/posts/my-note.md  →  #/blog/my-note
 ```
 
-1. Copy `src/content/blog/posts/_template.md` to a new `.md` file.
-2. Fill in `title`, `date` (`YYYY-MM-DD`), and optional `excerpt` and `tags`.
-3. Set `draft: false` (or remove the line) to publish.
-4. Run `npm run dev`, or `npm run build` for the production site.
+**From the admin panel:** open `/admin/` → **Blog posts** → **New Post**, write, then set
+**Draft** off and save. The commit rebuilds the live site automatically.
+
+**In the repository:** copy `src/content/blog/_template.md` to a new file in `posts/`, fill in
+`title`, `date` (`YYYY-MM-DD`), optional `excerpt` and `tags`, and set `draft: false`.
+Run `npm run dev` to preview, or push to publish.
 
 The filename becomes the slug; add `slug:` to the frontmatter to override it. Posts are sorted
 newest first. Drafts are hidden from the index and the production build. If every note is a draft,
@@ -138,13 +181,13 @@ This writes:
 
 ## Deploy
 
-### Vercel (recommended, zero config)
+### Vercel (optional, zero config)
 
 1. Push the project to GitHub.
 2. Go to [vercel.com/new](https://vercel.com/new) → import the repository.
 3. Framework preset: **Vite**. Build command: `npm run build`. Output directory: `dist`.
 4. Deploy. Add your custom domain if you have one.
-5. If you use a different domain, update the canonical/OG URLs in `index.html`, and `public/sitemap.xml`, `public/robots.txt` and `src/data/content.js` (currently `https://mostafijhemal.github.io/portfolio/`).
+5. If you use a different domain, update the canonical/OG URLs in `index.html`, `public/sitemap.xml`, `public/robots.txt` and `src/content/site.json` (currently `https://mostafijhemal.github.io/portfolio/`). Also update `public_folder` in `public/admin/config.yml` if the site is no longer served from `/portfolio/`.
 
 ### GitHub Pages (included workflow)
 
@@ -154,6 +197,7 @@ This writes:
 3. The workflow in `.github/workflows/deploy.yml` builds and publishes `dist/` on every push.
 4. The site is available at `https://mostafijhemal.github.io/portfolio/`.
    `vite.config.js` uses `base: './'`, so project-site subpaths work without changes.
+5. The CMS is at `https://mostafijhemal.github.io/portfolio/admin/` (see **Admin panel** above).
 
 ### Netlify
 
@@ -206,16 +250,24 @@ Run Lighthouse against `npm run preview` (not the dev server) for accurate numbe
 .
 ├── .github/workflows/deploy.yml
 ├── public/
+│   ├── admin/
+│   │   ├── config.yml        # Sveltia CMS schema
+│   │   └── index.html        # CMS shell
+│   ├── certificates/
+│   ├── uploads/              # new CMS uploads land here
 │   ├── apple-touch-icon.png
 │   ├── favicon.svg
 │   ├── icon-192.png
 │   ├── icon-512.png
 │   ├── manifest.webmanifest
 │   ├── og-image.png
+│   ├── profile.jpg
 │   ├── resume.pdf
 │   ├── robots.txt
 │   └── sitemap.xml
-├── scripts/generate-assets.py
+├── scripts/
+│   ├── generate-assets.py
+│   └── validate-cms.mjs      # checks JSON keys against the CMS schema
 ├── src/
 │   ├── components/
 │   │   ├── blog/
@@ -228,6 +280,7 @@ Run Lighthouse against `npm run preview` (not the dev server) for accurate numbe
 │   │   ├── Background.jsx
 │   │   ├── BelowFold.jsx
 │   │   ├── Contact.jsx
+│   │   ├── Credentials.jsx
 │   │   ├── Footer.jsx
 │   │   ├── GitHubActivity.jsx
 │   │   ├── Hero.jsx
@@ -244,10 +297,24 @@ Run Lighthouse against `npm run preview` (not the dev server) for accurate numbe
 │   │   ├── TiltCard.jsx
 │   │   ├── TypewriterLine.jsx
 │   │   └── YouTubeSection.jsx
-│   ├── data/content.js
-│   ├── content/blog/
-│   │   ├── posts/_template.md
-│   │   └── README.md
+│   ├── content/
+│   │   ├── about.json
+│   │   ├── blog.json
+│   │   ├── contact.json
+│   │   ├── credentials.json
+│   │   ├── footer.json
+│   │   ├── github.json
+│   │   ├── profile.json
+│   │   ├── projects.json
+│   │   ├── site.json
+│   │   ├── skills.json
+│   │   ├── socials.json
+│   │   ├── youtube.json
+│   │   └── blog/
+│   │       ├── _template.md
+│   │       ├── README.md
+│   │       └── posts/
+│   ├── data/content.js      # imports JSON, exports nav/filter constants
 │   ├── hooks/
 │   │   ├── useActiveSection.js
 │   │   ├── useGitHub.js
@@ -257,7 +324,9 @@ Run Lighthouse against `npm run preview` (not the dev server) for accurate numbe
 │   │   ├── useTheme.js
 │   │   ├── useTilt.js
 │   │   └── useTypewriter.js
-│   ├── lib/blog.js
+│   ├── lib/
+│   │   ├── assetUrl.js
+│   │   └── blog.js
 │   ├── App.jsx
 │   ├── index.css
 │   └── main.jsx
@@ -272,23 +341,24 @@ Run Lighthouse against `npm run preview` (not the dev server) for accurate numbe
 
 ## Placeholders to replace
 
-- [x] **Email** — set to `mostafij.hemal@gmail.com` in `src/data/content.js`
+- [x] **Email** — set to `mostafij.hemal@gmail.com` in `src/content/contact.json`
 - [x] **Formspree endpoint** — connected at `contact.formEndpoint`
+- [x] **CMS admin** — Sveltia CMS at `/admin/`, with content JSON + Markdown collections
 - [ ] **Screenshots** — `public/projects/*` + `image` fields on projects
 - [ ] **Résumé** — replace `public/resume.pdf`
 - [x] **Universities & years** — Eastern University (B.Sc., 2019) and Jahangirnagar University (M.Sc., 2026) in `about.education`
 - [x] **Work experience** — Executive, AristoPharma Ltd., Feb 2023 – Present; Software Support Engineer, Living Support, Feb–Dec 2022 (`about.experience`)
 - [x] **Freelance availability** — `profile.availability` and `contact.freelance`
 - [x] **Published notes** — two sourced AI news posts in `src/content/blog/posts/`
-- [x] **Certifications & training** — `credentials` in `src/data/content.js`
+- [x] **Certifications & training** — `credentials` in `src/content/credentials.json`
 - [x] **Certificate scans** — optimized images in `public/certificates/`, linked from each credential
 - [x] **Profile photo** — `public/profile.jpg`, shown in the About header
 - [ ] **Role responsibilities** — add 2–3 bullet points for the Executive role when ready
 - [x] **Current company** — AristoPharma Ltd. (`profile.company` + About quick facts)
 - [ ] **Featured videos** — `youtube.featured` (2–3 `{ title, href }` objects)
-- [ ] **Blood Bank repo URL** — `projects[4].links.source`
-- [ ] **Blood Bank tech stack** — `projects[4].tech` + `techNote`
-- [ ] **Deployed URL** — `index.html`, `public/sitemap.xml`, `public/robots.txt`, `src/data/content.js`
+- [ ] **Blood Bank repo URL** — `projects.items[4].links.source`
+- [ ] **Blood Bank tech stack** — `projects.items[4].tech` + `techNote`
+- [x] **Deployed URL** — `index.html`, `public/sitemap.xml`, `public/robots.txt`, `src/content/site.json`
 - [ ] **Favicon / OG image** — optional custom replacements in `public/`
 
 ---

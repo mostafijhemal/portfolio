@@ -7,6 +7,7 @@ import {
   FiTerminal,
 } from 'react-icons/fi';
 import { about, profile } from '../data/content';
+import { assetUrl } from '../lib/assetUrl';
 import Reveal from './Reveal';
 import Section from './Section';
 import TiltCard from './TiltCard';
@@ -29,7 +30,7 @@ function ProfilePortrait() {
         className="gradient-ring card relative overflow-hidden p-2 shadow-card"
       >
         <img
-          src={profile.photo.src}
+          src={assetUrl(profile.photo.src)}
           alt={profile.photo.alt}
           width="460"
           height="460"
@@ -191,7 +192,7 @@ export default function About() {
               <p className="mt-3 text-xs leading-relaxed text-muted/90">{about.quickFactsNote}</p>
 
               <a
-                href={profile.resume.href}
+                href={assetUrl(profile.resume.href)}
                 download
                 className="btn-ghost mt-5 w-full py-2.5 text-xs"
                 title={profile.resume.note}

@@ -1,0 +1,248 @@
+{
+  "eyebrow": "02 / Skills",
+  "title": "Honest tools for real projects.",
+  "description": "A practical stack, still growing. “Core” is what I reach for first; “Exploring” is what I am actively learning right now.",
+  "coreSummary": [
+    "Python",
+    "Web development"
+  ],
+  "exploringSummary": [
+    "Laravel",
+    "FastAPI"
+  ],
+  "legend": [
+    {
+      "tier": "core",
+      "label": "Core",
+      "note": "My daily foundation"
+    },
+    {
+      "tier": "working",
+      "label": "Working",
+      "note": "Used in projects"
+    },
+    {
+      "tier": "exploring",
+      "label": "Exploring",
+      "note": "Actively learning"
+    }
+  ],
+  "categories": [
+    {
+      "id": "languages",
+      "label": "Languages",
+      "items": [
+        {
+          "name": "Python",
+          "icon": "Python",
+          "tier": "core",
+          "color": "#4B8BBE"
+        },
+        {
+          "name": "JavaScript",
+          "icon": "JavaScript",
+          "tier": "core",
+          "color": "#E8C547"
+        },
+        {
+          "name": "C/C++",
+          "icon": "Cplusplus",
+          "tier": "working",
+          "color": "#5C9FD6"
+        },
+        {
+          "name": "PHP",
+          "icon": "PHP",
+          "tier": "exploring",
+          "color": "#8892BF"
+        }
+      ]
+    },
+    {
+      "id": "frontend",
+      "label": "Frontend",
+      "items": [
+        {
+          "name": "HTML5",
+          "icon": "HTML5",
+          "tier": "core",
+          "color": "#E34F26"
+        },
+        {
+          "name": "CSS3",
+          "icon": "CSS3",
+          "tier": "core",
+          "color": "#3B9CD9"
+        },
+        {
+          "name": "Tailwind CSS",
+          "icon": "Tailwind",
+          "tier": "core",
+          "color": "#38BDF8"
+        },
+        {
+          "name": "Bootstrap",
+          "icon": "Bootstrap",
+          "tier": "working",
+          "color": "#8B6FE8"
+        },
+        {
+          "name": "React",
+          "icon": "React",
+          "tier": "working",
+          "color": "#61DAFB"
+        },
+        {
+          "name": "jQuery",
+          "icon": "jQuery",
+          "tier": "working",
+          "color": "#4E9CD6"
+        }
+      ]
+    },
+    {
+      "id": "backend",
+      "label": "Backend",
+      "items": [
+        {
+          "name": "Flask",
+          "icon": "Flask",
+          "tier": "working",
+          "color": "#9DB4C8"
+        },
+        {
+          "name": "Django",
+          "icon": "Django",
+          "tier": "working",
+          "color": "#44B78B"
+        },
+        {
+          "name": "FastAPI",
+          "icon": "FastAPI",
+          "tier": "exploring",
+          "color": "#009688"
+        },
+        {
+          "name": "Laravel",
+          "icon": "Laravel",
+          "tier": "exploring",
+          "color": "#FF5A47"
+        },
+        {
+          "name": "Node.js",
+          "icon": "Node",
+          "tier": "working",
+          "color": "#5FA04E"
+        },
+        {
+          "name": "Streamlit",
+          "icon": "Streamlit",
+          "tier": "working",
+          "color": "#FF6B6B"
+        }
+      ]
+    },
+    {
+      "id": "databases",
+      "label": "Databases",
+      "items": [
+        {
+          "name": "SQLite",
+          "icon": "SQLite",
+          "tier": "working",
+          "color": "#6CB4D9"
+        },
+        {
+          "name": "MySQL",
+          "icon": "MySQL",
+          "tier": "working",
+          "color": "#5B9BD5"
+        },
+        {
+          "name": "PostgreSQL",
+          "icon": "PostgreSQL",
+          "tier": "working",
+          "color": "#6C8EF5"
+        },
+        {
+          "name": "MongoDB",
+          "icon": "MongoDB",
+          "tier": "exploring",
+          "color": "#47A248"
+        },
+        {
+          "name": "Oracle APEX",
+          "icon": "Oracle",
+          "tier": "exploring",
+          "color": "#F05454"
+        },
+        {
+          "name": "Oracle Database",
+          "icon": "Oracle",
+          "tier": "exploring",
+          "color": "#F05454"
+        },
+        {
+          "name": "MS SQL Server",
+          "icon": "MSSQL",
+          "tier": "exploring",
+          "color": "#E05252"
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "label": "Tools",
+      "items": [
+        {
+          "name": "Git",
+          "icon": "Git",
+          "tier": "core",
+          "color": "#F05032"
+        },
+        {
+          "name": "GitHub",
+          "icon": "GitHub",
+          "tier": "core",
+          "color": "#A8B6C8"
+        },
+        {
+          "name": "VS Code",
+          "icon": "VSCode",
+          "tier": "core",
+          "color": "#3E9EE0"
+        },
+        {
+          "name": "Jupyter",
+          "icon": "Jupyter",
+          "tier": "working",
+          "color": "#F37626"
+        },
+        {
+          "name": "Google Colab",
+          "icon": "Colab",
+          "tier": "working",
+          "color": "#F9AB00"
+        },
+        {
+          "name": "Render",
+          "icon": "Render",
+          "tier": "working",
+          "color": "#46E3B7"
+        },
+        {
+          "name": "Vercel",
+          "icon": "Vercel",
+          "tier": "working",
+          "color": "#A8B6C8"
+        },
+        {
+          "name": "GitHub Pages",
+          "icon": "GitHubPages",
+          "tier": "working",
+          "color": "#36BCF7"
+        }
+      ]
+    }
+  ]
+}

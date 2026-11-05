@@ -10,10 +10,14 @@ The filename is the URL slug. Set `slug:` in the frontmatter to override it.
 
 ## Publish a note
 
-1. Copy `posts/_template.md` to `posts/my-note.md`.
+From the CMS, open `/admin/` → **Blog posts** → **New Post**. From the repository:
+
+1. Copy `_template.md` (in this folder) to `posts/my-note.md`.
 2. Fill in the frontmatter and write the note.
 3. Change `draft: true` to `draft: false` (or delete the `draft` line).
 4. Run `npm run dev`, or `npm run build` for the production site.
+
+Both paths write the same Markdown files. The CMS is only a form over the repository.
 
 Posts are sorted newest first. Files with `draft: true` are never shown, including
 in the production build. When no published posts exist, the blog shows an honest
@@ -34,7 +38,9 @@ empty state.
 
 The body is standard Markdown: headings, lists, links, images, tables, quotes
 and fenced code blocks. External links in a published note open in a new tab
-automatically.
+automatically. Images inserted through the CMS are uploaded to
+`public/uploads/` and referenced as `/portfolio/uploads/...`; the site resolves
+that path for local development and GitHub Pages.
 
-Notes are plain files in the repository, so publishing is a commit — there is
-no admin panel, database or backend to maintain.
+Notes are plain files in the repository, so publishing is a commit — no
+database or backend to maintain.

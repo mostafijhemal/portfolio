@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FiArrowDown, FiArrowUpRight, FiClock, FiDownload, FiMapPin } from 'react-icons/fi';
 import { profile, socials } from '../data/content';
+import { assetUrl } from '../lib/assetUrl';
 import { SocialIcon } from './SocialIcons';
 import TiltCard from './TiltCard';
 import TypewriterLine from './TypewriterLine';
@@ -119,7 +120,7 @@ export default function Hero() {
               />
             </a>
             <a
-              href={profile.resume.href}
+              href={assetUrl(profile.resume.href)}
               download
               className="link-arrow px-2 py-2 text-muted hover:text-accent"
               title={profile.resume.note}

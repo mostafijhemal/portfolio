@@ -1,0 +1,9 @@
+{
+  "eyebrow": "05 / GitHub",
+  "title": "Learning in the open.",
+  "description": "Public repositories, languages and recent work pulled live from the GitHub API — no invented numbers, just what is actually there.",
+  "username": "mostafijhemal",
+  "profileUrl": "https://github.com/mostafijhemal",
+  "reposUrl": "https://github.com/mostafijhemal?tab=repositories",
+  "fallback": "Live GitHub stats are unavailable right now — the public API may be rate-limited. The profile is always one click away."
+}

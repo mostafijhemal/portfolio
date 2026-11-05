@@ -1,0 +1,15 @@
+{
+  "eyebrow": "Notes / Blog",
+  "title": "Notes and things I am learning.",
+  "description": "Short, honest notes about software, study and the lessons that stick. Written by hand in Markdown — no feed, no algorithm.",
+  "backToBlog": "All notes",
+  "backToPortfolio": "Back to portfolio",
+  "emptyTitle": "No notes published yet.",
+  "emptyBody": "This is where I will share thoughts as I build, learn and figure things out. Nothing is published yet — when I write a note, it will appear here.",
+  "emptyCta": "Say hello in the meantime",
+  "emptyHref": "#contact",
+  "notFoundTitle": "Note not found",
+  "notFoundBody": "That note does not exist, or it has not been published yet.",
+  "notFoundCta": "Browse all notes",
+  "notFoundHref": "#/blog"
+}

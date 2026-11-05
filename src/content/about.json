@@ -1,0 +1,87 @@
+{
+  "eyebrow": "01 / About",
+  "title": "A developer who learns by building.",
+  "intro": "I am Mostafijur — a software engineer based in Dhaka, currently working as an Executive at AristoPharma Ltd. I completed my B.Sc. in Computer Science and Engineering at Eastern University in 2019, followed by an M.Sc. in Computer Science and Engineering at Jahangirnagar University in 2026.",
+  "paragraphs": [
+    "I like turning ideas into practical, user-friendly applications. My curiosity sits at the intersection of software, databases and thoughtful system design: how the pieces fit together, and how they can make an everyday problem a little easier.",
+    "Most of what I know comes from hands-on work. I build a project, test it, find what breaks, and refine it. That loop — build, learn, improve, share — is how I keep growing, and it is the idea behind this site."
+  ],
+  "experience": {
+    "label": "Experience",
+    "items": [
+      {
+        "role": "Executive",
+        "company": "AristoPharma Ltd.",
+        "location": "Dhaka, Bangladesh",
+        "startDate": "2023-02-01",
+        "period": "Feb 2023 — Present",
+        "current": true
+      },
+      {
+        "role": "Software Support Engineer",
+        "company": "Living Support",
+        "startDate": "2022-02-01",
+        "endDate": "2022-12-31",
+        "period": "Feb 2022 — Dec 2022",
+        "current": false
+      }
+    ]
+  },
+  "storyLabel": "The short version",
+  "education": {
+    "label": "Education",
+    "items": [
+      {
+        "value": "M.Sc. in Computer Science and Engineering",
+        "institution": "Jahangirnagar University",
+        "year": "2026"
+      },
+      {
+        "value": "B.Sc. in Computer Science and Engineering",
+        "institution": "Eastern University",
+        "year": "2019"
+      }
+    ]
+  },
+  "location": {
+    "label": "Based in",
+    "value": "Dhaka, Bangladesh",
+    "note": "Dhaka · GMT+6"
+  },
+  "exploring": {
+    "label": "Currently exploring",
+    "items": [
+      "Python backend development",
+      "Laravel",
+      "Databases",
+      "Software design"
+    ]
+  },
+  "quickFacts": [
+    {
+      "label": "Role",
+      "value": "Software Engineer"
+    },
+    {
+      "label": "Position",
+      "value": "Executive · AristoPharma Ltd."
+    },
+    {
+      "label": "Since",
+      "value": "February 2023"
+    },
+    {
+      "label": "B.Sc.",
+      "value": "Eastern University · 2019"
+    },
+    {
+      "label": "M.Sc.",
+      "value": "Jahangirnagar University · 2026"
+    },
+    {
+      "label": "Availability",
+      "value": "Freelance projects"
+    }
+  ],
+  "quickFactsNote": "Executive at AristoPharma Ltd. in Dhaka since February 2023, previously a Software Support Engineer at Living Support. Available for freelance projects."
+}

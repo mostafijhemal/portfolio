@@ -1,0 +1,15 @@
+{
+  "eyebrow": "06 / Learning",
+  "title": "I share what I learn.",
+  "description": "The channel is my learning log: things I build, concepts I am figuring out, and notes from the journey from beginner to better.",
+  "handle": "@MostafijHimel",
+  "url": "https://youtube.com/@MostafijHimel",
+  "cta": "Visit the channel",
+  "topics": [
+    "Python backend",
+    "Laravel & web development",
+    "Databases & software design"
+  ],
+  "featured": [],
+  "slotLabel": "[ADD: featured video]"
+}

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { FiArrowUpRight, FiDownload, FiMenu, FiX } from 'react-icons/fi';
 import { navLinks, profile, socials } from '../data/content';
+import { assetUrl } from '../lib/assetUrl';
 import { useActiveSection } from '../hooks/useActiveSection';
 import { useTheme } from '../hooks/useTheme';
 import ThemeToggle from './ThemeToggle';
@@ -114,7 +115,7 @@ export default function Navbar({ route = { name: 'home' } }) {
 
         <div className="flex items-center gap-2">
           <a
-            href={profile.resume.href}
+            href={assetUrl(profile.resume.href)}
             download
             className="btn-ghost hidden px-4 py-2 text-xs md:inline-flex"
             title={`Download résumé — ${profile.resume.note}`}
@@ -183,7 +184,7 @@ export default function Navbar({ route = { name: 'home' } }) {
 
                 <div className="mt-2 border-t border-line/10 px-1 pt-3">
                   <a
-                    href={profile.resume.href}
+                    href={assetUrl(profile.resume.href)}
                     download
                     onClick={() => setOpen(false)}
                     className="btn-ghost w-full py-2.5 text-sm"

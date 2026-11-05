@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "id": "github",
+      "label": "GitHub",
+      "handle": "@mostafijhemal",
+      "href": "https://github.com/mostafijhemal"
+    },
+    {
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "handle": "mostafij-hemal",
+      "href": "https://www.linkedin.com/in/mostafij-hemal"
+    },
+    {
+      "id": "telegram",
+      "label": "Telegram",
+      "handle": "@mostafijhemal",
+      "href": "https://t.me/mostafijhemal"
+    },
+    {
+      "id": "youtube",
+      "label": "YouTube",
+      "handle": "@MostafijHimel",
+      "href": "https://youtube.com/@MostafijHimel"
+    }
+  ]
+}

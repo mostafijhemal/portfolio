@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /portfolio/admin/
 
 Sitemap: https://mostafijhemal.github.io/portfolio/sitemap.xml

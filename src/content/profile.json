@@ -1,0 +1,39 @@
+{
+  "name": "Mostafijur Rahman",
+  "firstName": "Mostafijur",
+  "lastName": "Rahman",
+  "initials": "MR",
+  "handle": "mostafijhemal",
+  "role": "Software Engineer",
+  "degree": "B.Sc. & M.Sc. in Computer Science and Engineering",
+  "location": "Dhaka, Bangladesh",
+  "timezone": "GMT+6",
+  "company": "AristoPharma Ltd.",
+  "availability": "Available for freelance projects",
+  "photo": {
+    "src": "./profile.jpg",
+    "alt": "Portrait of Mostafijur Rahman",
+    "caption": "Dhaka, Bangladesh"
+  },
+  "tagline": "Build • Learn • Improve • Share",
+  "bio": "I turn ideas into practical, user-friendly applications. I am interested in how software, databases and thoughtful system design solve everyday problems — and I learn by building, testing and refining real projects.",
+  "valueStatement": "I turn ideas into practical, user-friendly software — learning by building, testing and refining real projects.",
+  "levelNote": "Beginner to Intermediate — growing fast through hands-on projects.",
+  "typingPhrases": [
+    "Software Engineer",
+    "Python Backend",
+    "Laravel & Web Development",
+    "Always Learning and Building"
+  ],
+  "currentlyExploring": [
+    "Python backend development",
+    "Laravel",
+    "Databases",
+    "Software design"
+  ],
+  "resume": {
+    "href": "./resume.pdf",
+    "label": "Résumé",
+    "note": "Replace public/resume.pdf with your real CV."
+  }
+}

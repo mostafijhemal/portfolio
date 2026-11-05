@@ -1,5 +1,6 @@
 import { FiArrowUpRight, FiAward, FiBookOpen, FiCheckCircle } from 'react-icons/fi';
 import { credentials } from '../data/content';
+import { assetUrl } from '../lib/assetUrl';
 import Reveal from './Reveal';
 import Section from './Section';
 import TiltCard from './TiltCard';
@@ -64,7 +65,7 @@ function CredentialItem({ item }) {
 
       {item.image ? (
         <a
-          href={item.image}
+          href={assetUrl(item.image)}
           target="_blank"
           rel="noreferrer noopener"
           aria-label={`View ${item.title} certificate (opens in a new tab)`}

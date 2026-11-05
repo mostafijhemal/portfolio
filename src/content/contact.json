@@ -1,0 +1,13 @@
+{
+  "eyebrow": "07 / Contact",
+  "title": "Let’s build something useful.",
+  "description": "Have a project, an idea, or a question? I am always happy to talk about software, learning and the things we can build.",
+  "email": "mostafij.hemal@gmail.com",
+  "formEndpoint": "https://formspree.io/f/xdeewjrq",
+  "availability": "Based in Dhaka, Bangladesh · GMT+6",
+  "freelance": "Available for freelance projects",
+  "formNote": "Messages sent through the form arrive straight in my inbox. Prefer a direct message? Telegram is the fastest way to reach me.",
+  "successMessage": "Thanks — your message is on its way. I will get back to you soon.",
+  "errorMessage": "Something went wrong while sending. Please try again, or reach me on Telegram.",
+  "unconfiguredMessage": "The form is not connected yet. Add a Formspree endpoint or an email in content.js — or message me on Telegram or LinkedIn."
+}

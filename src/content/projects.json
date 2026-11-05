@@ -1,0 +1,128 @@
+{
+  "section": {
+    "eyebrow": "04 / Projects",
+    "title": "Work that taught me something.",
+    "description": "Five projects, each an attempt to make a real problem a little easier. Every card states the problem, what it does and the stack behind it — with screenshots clearly marked until I add them.",
+    "allRepos": "See all repositories",
+    "empty": "No projects in this category yet."
+  },
+  "items": [
+    {
+      "id": "sports-iptv-backend",
+      "index": "01",
+      "title": "Sports IPTV Backend",
+      "category": "Backend",
+      "categoryId": "backend",
+      "status": {
+        "label": "Live Demo",
+        "tone": "live"
+      },
+      "accent": "cyan",
+      "problem": "A sports streaming product needs a dependable backend layer between its content and the client applications people use.",
+      "does": "A backend for a sports IPTV platform, built with Python, FastAPI and PostgreSQL.",
+      "tech": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL"
+      ],
+      "links": {
+        "source": "https://github.com/mostafijhemal/sports-iptv-backend",
+        "demo": "https://mostafijhemal.github.io/sports-iptv-backend/"
+      },
+      "visualNote": "[ADD: screenshot]",
+      "featured": true
+    },
+    {
+      "id": "advanced-cookies-analyzer",
+      "index": "02",
+      "title": "Advanced Cookies Analyzer",
+      "category": "Data/Research",
+      "categoryId": "data",
+      "status": {
+        "label": "Open Source",
+        "tone": "source"
+      },
+      "accent": "violet",
+      "problem": "Cookies make the modern web work, but they also enable tracking and privacy problems that are difficult to see.",
+      "does": "An M.Sc. thesis project that analyses website cookies, privacy and tracking behaviour — with a Streamlit interface, Pandas and SQLite.",
+      "tech": [
+        "Python",
+        "Streamlit",
+        "Pandas",
+        "SQLite"
+      ],
+      "links": {
+        "source": "https://github.com/mostafijhemal/advanced-cookies-analyzer"
+      },
+      "visualNote": "[ADD: screenshot]"
+    },
+    {
+      "id": "cgpa-calculator",
+      "index": "03",
+      "title": "Web-Based CGPA Calculator",
+      "category": "Web",
+      "categoryId": "web",
+      "status": {
+        "label": "Live Demo",
+        "tone": "live"
+      },
+      "accent": "cyan",
+      "problem": "Students calculate SGPA and CGPA by hand, then rebuild transcripts manually — slow, repetitive and easy to get wrong.",
+      "does": "A browser-based SGPA/CGPA calculator with transcript generation, built with HTML, Tailwind CSS and JavaScript.",
+      "tech": [
+        "HTML",
+        "Tailwind CSS",
+        "JavaScript"
+      ],
+      "links": {
+        "source": "https://github.com/mostafijhemal/CGPA_Calculator",
+        "demo": "https://mostafijhemal.github.io/CGPA_Calculator/"
+      },
+      "visualNote": "[ADD: screenshot]"
+    },
+    {
+      "id": "basharent-manager",
+      "index": "04",
+      "title": "BashaRent Manager",
+      "category": "Mobile",
+      "categoryId": "mobile",
+      "status": {
+        "label": "Open Source",
+        "tone": "source"
+      },
+      "accent": "violet",
+      "problem": "Buildings, flats, tenants, rent, bills, expenses and payments are usually tracked across disconnected spreadsheets and notebooks.",
+      "does": "An Android-focused rental management app that brings those workflows together, built with Node.js, React and TypeScript.",
+      "tech": [
+        "Node.js",
+        "React",
+        "TypeScript"
+      ],
+      "links": {
+        "source": "https://github.com/mostafijhemal/basharent-manager"
+      },
+      "visualNote": "[ADD: screenshot]"
+    },
+    {
+      "id": "blood-bank-platform",
+      "index": "05",
+      "title": "Blood Bank Management Platform",
+      "category": "Web",
+      "categoryId": "web",
+      "status": {
+        "label": "In Development",
+        "tone": "dev"
+      },
+      "accent": "cyan",
+      "problem": "Blood donation coordination gets fragmented when donors, organisations, blood banks and hospitals each work in their own system.",
+      "does": "A role-based platform in development, with dashboards for donors, social organisations, blood banks, hospitals and admins.",
+      "tech": [],
+      "techNote": "[ADD: tech stack]",
+      "links": {
+        "source": null,
+        "demo": null
+      },
+      "visualNote": "[ADD: screenshot]"
+    }
+  ]
+}

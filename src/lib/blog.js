@@ -1,4 +1,6 @@
 import { marked } from 'marked';
+import { JSON_SCHEMA, load as parseYaml } from 'js-yaml';
+import { assetUrl } from './assetUrl';
 
 /**
  * Posts are plain Markdown files in src/content/blog/posts/.
@@ -17,33 +19,34 @@ function parseFrontmatter(raw) {
 
   if (!match) return { data: {}, body: raw.trim() };
 
-  const data = {};
+  let data = {};
 
-  match[1].split(/\r?\n/).forEach((line) => {
-    const separator = line.indexOf(':');
-    if (separator === -1) return;
-
-    const key = line.slice(0, separator).trim();
-    if (!key) return;
-
-    let value = line.slice(separator + 1).trim();
-
-    if (value.startsWith('[') && value.endsWith(']')) {
-      value = value
-        .slice(1, -1)
-        .split(',')
-        .map((item) => item.trim().replace(/^["']|["']$/g, ''))
-        .filter(Boolean);
-    } else if (value === 'true' || value === 'false') {
-      value = value === 'true';
-    } else {
-      value = value.replace(/^["']|["']$/g, '');
+  try {
+    // JSON_SCHEMA keeps unquoted dates as strings instead of Date objects,
+    // while still parsing booleans, lists and quoted values correctly.
+    const parsed = parseYaml(match[1], { schema: JSON_SCHEMA });
+    if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+      data = parsed;
     }
-
-    data[key] = value;
-  });
+  } catch (error) {
+    console.warn('Could not parse post frontmatter:', error.message);
+  }
 
   return { data, body: match[2].trim() };
+}
+
+/**
+ * Markdown images link to CMS uploads as `/portfolio/uploads/...`, but the
+ * site is built with a relative base. Rewrite those paths at render time.
+ */
+function renderMarkdown(body) {
+  return marked
+    .parse(body, { gfm: true, breaks: false })
+    .replace(/\bsrc="(\/[^"]*)"/g, (match, path) => `src="${assetUrl(path)}"`)
+    .replace(
+      /\bhref="(\/portfolio\/[^"]*)"/g,
+      (match, path) => `href="${assetUrl(path)}"`,
+    );
 }
 
 function formatDate(value) {
@@ -74,18 +77,19 @@ export const posts = Object.entries(files)
   .map(([path, raw]) => {
     const { data, body } = parseFrontmatter(raw);
     const slug = String(data.slug || path.split('/').pop().replace(/\.md$/, ''));
+    const date = data.date ? String(data.date) : '';
 
     return {
       slug,
-      title: data.title || '[ADD: post title]',
-      excerpt: data.excerpt || '',
-      date: data.date || '',
-      dateLabel: formatDate(data.date),
-      tags: Array.isArray(data.tags) ? data.tags : [],
+      title: data.title ? String(data.title) : '[ADD: post title]',
+      excerpt: data.excerpt ? String(data.excerpt) : '',
+      date,
+      dateLabel: formatDate(date),
+      tags: Array.isArray(data.tags) ? data.tags.map((tag) => String(tag)) : [],
       draft: data.draft === true || data.draft === 'true',
       readingTime: readingTime(body),
       body,
-      html: marked.parse(body, { gfm: true, breaks: false }),
+      html: renderMarkdown(body),
       href: `#/blog/${encodeURIComponent(slug)}`,
     };
   })
