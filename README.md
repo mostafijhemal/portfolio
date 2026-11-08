@@ -105,7 +105,7 @@ The CMS is [Sveltia CMS](https://sveltiacms.app/). It is a static page in `publi
 `config.yml` and talks directly to the GitHub API. No database or server is involved: saving creates
 a commit, and the normal Pages workflow publishes it.
 
-1. Open **https://mostafijhemal.github.io/portfolio/admin/**.
+1. Open <!--**https://mostafijhemal.github.io/portfolio/admin/**.-->
 2. Choose **Sign In Using Access Token**.
 3. Create a token on GitHub:
    - **Fine-grained token** → Resource owner `mostafijhemal`, repository access only
