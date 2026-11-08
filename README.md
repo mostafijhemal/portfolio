@@ -347,7 +347,7 @@ Run Lighthouse against `npm run preview` (not the dev server) for accurate numbe
 - [ ] **Screenshots** — `public/projects/*` + `image` fields on projects
 - [x] **Résumé** — current one-page CV in `public/resume.pdf`
 - [x] **Universities & years** — Eastern University (B.Sc., 2019) and Jahangirnagar University (M.Sc., 2026) in `about.education`
-- [x] **Work experience** — Executive, AristoPharma Ltd., Feb 2023 – Present; Software Support Engineer, Living Support, Feb–Dec 2022 (`about.experience`)
+- [x] **Work experience** — Executive, AristoPharma Ltd., Feb 2023 – Present; Software Support Engineer, Living Support, Feb–Dec 2022; Research Assistant, Savvy Techmart Ltd., Jan 2016 – Jan 2017 (`about.experience`)
 - [x] **Freelance availability** — `profile.availability` and `contact.freelance`
 - [x] **Published notes** — two sourced AI news posts in `src/content/blog/posts/`
 - [x] **Certifications & training** — `credentials` in `src/content/credentials.json`
