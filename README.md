@@ -1,12 +1,51 @@
-# Mostafijur Rahman — Portfolio
+<div align="center">
 
-A fast, dark-first portfolio and Markdown blog for **Mostafijur Rahman**, Software Engineer (Dhaka, Bangladesh).
+# Mostafijur Rahman · Portfolio
+
+**A fast, dark-first portfolio and Markdown blog for a software engineer in Dhaka, Bangladesh.**
+
+![React 18](https://img.shields.io/badge/React_18-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![Vite 6](https://img.shields.io/badge/Vite_6-646CFF?style=flat-square&logo=vite&logoColor=white)
+![Tailwind CSS 3](https://img.shields.io/badge/Tailwind_3-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-181717?style=flat-square&logo=github&logoColor=white)
+
+[![Live site](https://img.shields.io/badge/Visit_the_site-36BCF7?style=for-the-badge&logo=googlechrome&logoColor=0B0F14)](https://mostafijhemal.github.io/portfolio/)
+[![Admin CMS](https://img.shields.io/badge/Open_the_CMS-7C5CFF?style=for-the-badge)](https://mostafijhemal.github.io/portfolio/admin/)
+[![Blog](https://img.shields.io/badge/Read_the_blog-0B0F14?style=for-the-badge&logo=markdown&logoColor=white)](https://mostafijhemal.github.io/portfolio/#/blog)
+
+</div>
+
 Portfolio copy lives in structured JSON under `src/content/`; blog notes are plain Markdown files.
 Both can be edited from the built-in CMS at `/admin/`.
 
+> [!NOTE]
 > **Stack:** React 18 + Vite 6 + Tailwind CSS 3 + CSS-only motion.
 > No UI kit, no animation runtime, no icon font, no analytics. The public site ships no
 > third-party scripts; only the `/admin/` page loads Sveltia CMS from a CDN.
+
+---
+
+## At a glance
+
+| Area | What's inside |
+| :-- | :-- |
+| **Front end** | React 18 + Vite 6, Tailwind CSS 3, self-hosted Inter Variable and Fira Code |
+| **Content** | 12 JSON files in `src/content/`, re-exported by `src/data/content.js` |
+| **Writing** | Markdown posts with hash routes and a lazy-loaded renderer |
+| **Admin** | Sveltia CMS at `/admin/`, committing straight to GitHub — no database |
+| **Delivery** | GitHub Pages workflow, plus optional Vercel or Netlify |
+| **Extras** | Live GitHub stats, YouTube slots, Formspree contact form, résumé download |
+
+---
+
+## Contents
+
+| | |
+| :-- | :-- |
+| [Quick start](#quick-start) | [Edit the content](#edit-the-content) |
+| [Assets](#assets) | [Deploy](#deploy) |
+| [Performance](#performance-notes) | [Accessibility](#accessibility) |
+| [Project structure](#project-structure) | [Placeholders to replace](#placeholders-to-replace) |
 
 ---
 
@@ -19,12 +58,16 @@ npm run dev
 
 Open the local URL printed by Vite (usually `http://localhost:5173`).
 
-```bash
-npm run build     # production build → dist/
-npm run preview   # preview the production build
-```
+| Command | What it does |
+| :-- | :-- |
+| `npm run dev` | Start the Vite dev server |
+| `npm run build` | Production build → `dist/` |
+| `npm run preview` | Preview the production build |
+| `npm run lint` | Run ESLint |
+| `npm run validate:cms` | Check JSON keys against the CMS schema |
 
-> Built and tested with Node 20+.
+> [!TIP]
+> Built and tested with **Node 20+**.
 
 ---
 
@@ -41,7 +84,7 @@ names the components already use. Keep the JSON keys unchanged; the CMS schema i
 `public/admin/config.yml` mirrors them.
 
 | File | Controls |
-| --- | --- |
+| :-- | :-- |
 | `src/content/site.json` | Canonical site URL used by blog share metadata |
 | `src/content/profile.json` | Name, role, location, tagline, photo, résumé, typing phrases |
 | `src/content/socials.json` | Social links and their icons |
@@ -71,8 +114,9 @@ a commit, and the normal Pages workflow publishes it.
 4. Paste the token and sign in. Edit a section or post, then save. Sveltia commits to `main`, and
    the Pages workflow rebuilds the public site (usually about a minute).
 
-The token is stored in the browser's local storage, not in this repository. Use a private device,
-set an expiry date when you create it, and revoke it from GitHub if it is ever exposed.
+> [!WARNING]
+> The token is stored in the browser's local storage, not in this repository. Use a private device,
+> set an expiry date when you create it, and revoke it from GitHub if it is ever exposed.
 
 **Optional one-click login:** if you later want GitHub sign-in instead of pasting a token, deploy
 [Sveltia CMS Authenticator](https://github.com/sveltia/sveltia-cms-auth) to a free Cloudflare
@@ -181,14 +225,6 @@ This writes:
 
 ## Deploy
 
-### Vercel (optional, zero config)
-
-1. Push the project to GitHub.
-2. Go to [vercel.com/new](https://vercel.com/new) → import the repository.
-3. Framework preset: **Vite**. Build command: `npm run build`. Output directory: `dist`.
-4. Deploy. Add your custom domain if you have one.
-5. If you use a different domain, update the canonical/OG URLs in `index.html`, `public/sitemap.xml`, `public/robots.txt` and `src/content/site.json` (currently `https://mostafijhemal.github.io/portfolio/`). Also update `public_folder` in `public/admin/config.yml` if the site is no longer served from `/portfolio/`.
-
 ### GitHub Pages (included workflow)
 
 1. Push to a GitHub repository with the default branch named `main`.
@@ -198,6 +234,14 @@ This writes:
 4. The site is available at `https://mostafijhemal.github.io/portfolio/`.
    `vite.config.js` uses `base: './'`, so project-site subpaths work without changes.
 5. The CMS is at `https://mostafijhemal.github.io/portfolio/admin/` (see **Admin panel** above).
+
+### Vercel (optional, zero config)
+
+1. Push the project to GitHub.
+2. Go to [vercel.com/new](https://vercel.com/new) → import the repository.
+3. Framework preset: **Vite**. Build command: `npm run build`. Output directory: `dist`.
+4. Deploy. Add your custom domain if you have one.
+5. If you use a different domain, update the canonical/OG URLs in `index.html`, `public/sitemap.xml`, `public/robots.txt` and `src/content/site.json` (currently `https://mostafijhemal.github.io/portfolio/`). Also update `public_folder` in `public/admin/config.yml` if the site is no longer served from `/portfolio/`.
 
 ### Netlify
 
@@ -227,7 +271,8 @@ Build command `npm run build`, publish directory `dist`.
 - Icons are tree-shaken named imports; social and tech icons live in separate modules so the
   hero does not download database/tooling marks.
 
-Run Lighthouse against `npm run preview` (not the dev server) for accurate numbers.
+> [!TIP]
+> Run Lighthouse against `npm run preview` (not the dev server) for accurate numbers.
 
 ---
 
@@ -245,6 +290,9 @@ Run Lighthouse against `npm run preview` (not the dev server) for accurate numbe
 ---
 
 ## Project structure
+
+<details>
+<summary><b>Show the full file tree</b></summary>
 
 ```
 .
@@ -337,30 +385,36 @@ Run Lighthouse against `npm run preview` (not the dev server) for accurate numbe
 └── vite.config.js
 ```
 
+</details>
+
 ---
 
 ## Placeholders to replace
 
-- [x] **Email** — set to `mostafij.hemal@gmail.com` in `src/content/contact.json`
-- [x] **Formspree endpoint** — connected at `contact.formEndpoint`
-- [x] **CMS admin** — Sveltia CMS at `/admin/`, with content JSON + Markdown collections
-- [ ] **Screenshots** — `public/projects/*` + `image` fields on projects
-- [x] **Résumé** — current one-page CV in `public/resume.pdf`
-- [x] **Universities & years** — Eastern University (B.Sc., 2019) and Jahangirnagar University (M.Sc., 2026) in `about.education`
-- [x] **Work experience** — Executive, AristoPharma Ltd., Feb 2023 – Present; Software Support Engineer, Living Support, Feb–Dec 2022; Research Assistant, Savvy Techmart Ltd., Jan 2016 – Jan 2017 (`about.experience`)
-- [x] **Freelance availability** — `profile.availability` and `contact.freelance`
-- [x] **Published notes** — two sourced AI news posts in `src/content/blog/posts/`
-- [x] **Certifications & training** — `credentials` in `src/content/credentials.json`
-- [x] **Certificate scans** — optimized images in `public/certificates/`, linked from each credential
-- [x] **Profile photo** — `public/profile.jpg`, shown in the About header
-- [ ] **Role responsibilities** — add 2–3 bullet points for the Executive role when ready
-- [x] **Current company** — AristoPharma Ltd. (`about.experience` + About quick facts)
-- [ ] **Featured videos** — `youtube.featured` (2–3 `{ title, href }` objects)
-- [ ] **Blood Bank repo URL** — `projects.items[4].links.source`
-- [ ] **Blood Bank tech stack** — `projects.items[4].tech` + `techNote`
-- [x] **Deployed URL** — `index.html`, `public/sitemap.xml`, `public/robots.txt`, `src/content/site.json`
-- [ ] **Favicon / OG image** — optional custom replacements in `public/`
+| Status | Item | Where |
+| :--: | :-- | :-- |
+| ✅ | **Email** | `mostafij.hemal@gmail.com` in `src/content/contact.json` |
+| ✅ | **Formspree endpoint** | `contact.formEndpoint` |
+| ✅ | **CMS admin** | Sveltia CMS at `/admin/`, with content JSON + Markdown collections |
+| ⬜ | **Screenshots** | `public/projects/*` + `image` fields on projects |
+| ✅ | **Résumé** | current one-page CV in `public/resume.pdf` |
+| ✅ | **Universities & years** | Eastern University (B.Sc., 2019) and Jahangirnagar University (M.Sc., 2026) in `about.education` |
+| ✅ | **Work experience** | Executive, AristoPharma Ltd., Feb 2023 – Present; Software Support Engineer, Living Support, Feb–Dec 2022; Research Assistant, Savvy Techmart Ltd., Jan 2016 – Jan 2017 (`about.experience`) |
+| ✅ | **Freelance availability** | `profile.availability` and `contact.freelance` |
+| ✅ | **Published notes** | five sourced AI news posts in `src/content/blog/posts/` |
+| ✅ | **Certifications & training** | `credentials` in `src/content/credentials.json` |
+| ✅ | **Certificate scans** | optimized images in `public/certificates/`, linked from each credential |
+| ✅ | **Profile photo** | `public/profile.jpg`, shown in the About header |
+| ⬜ | **Role responsibilities** | add 2–3 bullet points for the Executive role when ready |
+| ✅ | **Current company** | AristoPharma Ltd. (`about.experience` + About quick facts) |
+| ⬜ | **Featured videos** | `youtube.featured` (2–3 `{ title, href }` objects) |
+| ⬜ | **Blood Bank repo URL** | `projects.items[4].links.source` |
+| ⬜ | **Blood Bank tech stack** | `projects.items[4].tech` + `techNote` |
+| ✅ | **Deployed URL** | `index.html`, `public/sitemap.xml`, `public/robots.txt`, `src/content/site.json` |
+| ⬜ | **Favicon / OG image** | optional custom replacements in `public/` |
 
 ---
 
-Built with React, Vite and Tailwind CSS.
+<div align="center">
+<sub>Built with React, Vite and Tailwind CSS · Content managed with Sveltia CMS</sub>
+</div>
