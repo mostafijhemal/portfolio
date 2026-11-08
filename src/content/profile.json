@@ -21,8 +21,8 @@
     "Always Learning and Building"
   ],
   "resume": {
-    "href": "G:\\Mostafij_resume.pdf",
+    "href": "./resume.pdf",
     "label": "Résumé",
-    "note": "Replace public/resume.pdf with your real CV."
+    "note": "PDF · 1 page"
   }
 }

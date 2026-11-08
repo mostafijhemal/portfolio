@@ -173,7 +173,7 @@ This writes:
 
 - `public/og-image.png` — 1200×630 share card
 - `public/icon-192.png`, `public/icon-512.png`, `public/apple-touch-icon.png`
-- `public/resume.pdf` — **placeholder** résumé, clearly marked
+- `public/resume.pdf` — a **placeholder** résumé only when the file is missing; an existing real CV is never overwritten
 
 `public/favicon.svg` is hand-written and can be edited directly.
 
@@ -345,7 +345,7 @@ Run Lighthouse against `npm run preview` (not the dev server) for accurate numbe
 - [x] **Formspree endpoint** — connected at `contact.formEndpoint`
 - [x] **CMS admin** — Sveltia CMS at `/admin/`, with content JSON + Markdown collections
 - [ ] **Screenshots** — `public/projects/*` + `image` fields on projects
-- [ ] **Résumé** — replace `public/resume.pdf`
+- [x] **Résumé** — current one-page CV in `public/resume.pdf`
 - [x] **Universities & years** — Eastern University (B.Sc., 2019) and Jahangirnagar University (M.Sc., 2026) in `about.education`
 - [x] **Work experience** — Executive, AristoPharma Ltd., Feb 2023 – Present; Software Support Engineer, Living Support, Feb–Dec 2022 (`about.experience`)
 - [x] **Freelance availability** — `profile.availability` and `contact.freelance`

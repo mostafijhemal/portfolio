@@ -149,6 +149,11 @@ def make_og():
 
 
 def make_resume():
+    target = PUBLIC / "resume.pdf"
+    if target.exists():
+        print("kept existing public/resume.pdf (delete it to regenerate the placeholder)")
+        return
+
     width, height = 1240, 1754  # A4 at 150 dpi
     canvas = Image.new("RGB", (width, height), (250, 250, 248))
     draw = ImageDraw.Draw(canvas)
@@ -240,7 +245,7 @@ def make_resume():
 
     print(f"resume content ends at y={y} (page height {height})")
 
-    canvas.save(PUBLIC / "resume.pdf", "PDF", resolution=150.0)
+    canvas.save(target, "PDF", resolution=150.0)
     print("wrote public/resume.pdf")
 
 
